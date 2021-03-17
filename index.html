@@ -1,1 +1,8 @@
-<h1>hello</h1>
+<div id="main"></div>
+<script>
+  fetch('https://github-pr-reviewer-summary.herokuapp.com/')
+  .then(response => response.json())
+  .then(data => {
+    document.getElementById('main').innerHTML = data
+  });
+</script>
