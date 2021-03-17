@@ -4,6 +4,7 @@
   <title></title>
 </head>
 <body>
+  <h1 id="loading">Loading...</h1>
 <button id="byReviewer" style="display: none;">By reviewer</button>
 <button id="byPR" style="display: none;">By PR</button>
 <div id="reviewerView" style="display: none; flex-wrap:wrap;"></div>  
@@ -13,6 +14,7 @@
   fetch('https://github-pr-reviewer-summary.herokuapp.com/')
   .then(response => response.json())
   .then(data => {
+    document.getElementById('loading').style.display = 'none'
     document.getElementById('byReviewer').style.display = 'initial'
     document.getElementById('byPR').style.display = 'initial'
   });
