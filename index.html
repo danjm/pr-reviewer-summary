@@ -13,8 +13,8 @@
   fetch('https://github-pr-reviewer-summary.herokuapp.com/')
   .then(response => response.json())
   .then(data => {
-    document.getElementById('reviewerView').style.display = 'initial'
-    document.getElementById('prView').style.display = 'initial'
+    document.getElementById('byReviewer').style.display = 'initial'
+    document.getElementById('byPR').style.display = 'initial'
   });
 </script>
 <script>
