@@ -3,6 +3,6 @@
   fetch('https://github-pr-reviewer-summary.herokuapp.com/')
   .then(response => response.json())
   .then(data => {
-    document.getElementById('main').innerHTML = data
+    document.getElementById('main').innerHTML = JSON.stringify(data, null, 2)
   });
 </script>
