@@ -4,9 +4,12 @@
   <title></title>
 </head>
 <body>
-  <h1 id="loading">Loading...</h1>
-<button id="byReviewer" style="display: none;">By reviewer</button>
-<button id="byPR" style="display: none;">By PR</button>
+<button id="byReviewer">By reviewer</button>
+<button id="byPR">By PR</button>
+<div style="display: flex; margin-top: 8px; margin-bottom: 8px;">
+  <span>Only PRs updated in the past two weeks:</span>
+  <input type="checkbox" id="date-filter-check" checked />
+</div>
 <div id="reviewerView" style="display: none; flex-wrap:wrap;"></div>  
 <div id="prView" style="display: none; flex-wrap:wrap;"></div>
 </body>
@@ -14,10 +17,15 @@
   fetch('https://github-pr-reviewer-summary.herokuapp.com/')
   .then(response => response.json())
   .then(data => {
-    prData = data
+    sourceData = data
     document.getElementById('loading').style.display = 'none'
     document.getElementById('byReviewer').style.display = 'initial'
     document.getElementById('byPR').style.display = 'initial'
+    
+    currentDateTime = Date.now()
+    TWO_WEEKS = 1209600000
+    lastTwoWeeksPRData = sourceData.filter(pr => (currentDateTime - (new Date(pr.dateLastUpdated).getTime())) < TWO_WEEKS)
+    currentView = ''
   });
 </script>
 <script>
@@ -31,6 +39,9 @@
   </script>
   <script>
     function setPRData () {
+      const dateFilterCheckVal = document.getElementById('date-filter-check').value
+      const prData = dateFilterCheckVal === 'on' ? lastTwoWeeksPRData : sourceData
+      
       prData.forEach(pr => {
         const html = '<div style="display:flex; flex-flow: column;padding: 12px;border: 1px solid black;width: 300px;overflow-wrap: break-word;">'+
           `<div style="font-size: 18px; font-weight: 700;">Title: ${pr.title}</div>` +
@@ -43,6 +54,9 @@
     }
 
     function setReviewerData () {
+      const dateFilterCheckVal = document.getElementById('date-filter-check').value
+      const prData = dateFilterCheckVal === 'on' ? lastTwoWeeksPRData : sourceData
+      
       let reviewerData = {}
       prData.forEach(pr => {
         pr.reviewers.forEach(reviewer => {
@@ -80,6 +94,7 @@
         document.getElementById('reviewerView').innerHTML = ''
         document.getElementById('prView').style.display = 'none'
         document.getElementById('reviewerView').style.display = 'flex'
+        currentView = 'reviewerView'
         setReviewerData()
       })
 
@@ -88,7 +103,19 @@
         document.getElementById('reviewerView').innerHTML = ''
         document.getElementById('reviewerView').style.display = 'none'
         document.getElementById('prView').style.display = 'flex'
+        currentView = 'prView'
         setPRData()
+      })
+      
+      document.getElementById('date-filter-check').addEventListener('click', () => {
+        document.getElementById('date-filter-check').value = document.getElementById('date-filter-check').value === 'on' ? 'off' : 'on'
+        document.getElementById('prView').innerHTML = ''
+        document.getElementById('reviewerView').innerHTML = ''
+        if (currentView === 'reviewerView') {
+          setReviewerData()
+        } else if (currentView === 'prView') {
+          setPRData()
+        }
       })
     }
 
