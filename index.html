@@ -1,8 +1,95 @@
-<div id="main"></div>
-<script>
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+</head>
+<body>
+<button id="byReviewer" style="display: none;">By reviewer</button>
+<button id="byPR" style="display: none;">By PR</button>
+<div id="reviewerView" style="display: none; flex-wrap:wrap;"></div>  
+<div id="prView" style="display: none; flex-wrap:wrap;"></div>
+</body>
+  <script>
   fetch('https://github-pr-reviewer-summary.herokuapp.com/')
   .then(response => response.json())
   .then(data => {
-    document.getElementById('main').innerHTML = JSON.stringify(data, null, 2)
+    document.getElementById('reviewerView').style.display = 'initial'
+    document.getElementById('prView').style.display = 'initial'
   });
 </script>
+<script>
+prData = [ { "author": "darkwing", "pullNumber": 10593, "dateLastUpdated": "2021-03-17T00:59:16Z", "title": "Fix 10517 - Prevent tokens without addresses from being added to token list", "url": "https://github.com/MetaMask/metamask-extension/pull/10593", "reviewers": [ "darkwing", "danjm", "Gudahtt", "brad-decker" ] }, { "author": "Gudahtt", "pullNumber": 10661, "dateLastUpdated": "2021-03-17T00:39:52Z", "title": "Improve specificity of `test:unit:lax` npm script", "url": "https://github.com/MetaMask/metamask-extension/pull/10661", "reviewers": [ "brad-decker", "shanejonas" ] }, { "author": "vorot93", "pullNumber": 10657, "dateLastUpdated": "2021-03-16T23:15:30Z", "title": "Improve Russian translation", "url": "https://github.com/MetaMask/metamask-extension/pull/10657", "reviewers": [ "brad-decker" ] }, { "author": "danjm", "pullNumber": 10658, "dateLastUpdated": "2021-03-16T21:04:10Z", "title": "Swaps support for local testnet", "url": "https://github.com/MetaMask/metamask-extension/pull/10658", "reviewers": [ "brad-decker", "darkwing" ] }, { "author": "NiranjanaBinoy", "pullNumber": 10595, "dateLastUpdated": "2021-03-16T18:30:37Z", "title": "Adding option to set Custom Nonce to Confirm Approve Page", "url": "https://github.com/MetaMask/metamask-extension/pull/10595", "reviewers": [ "brad-decker", "NiranjanaBinoy", "shanejonas" ] }, { "author": "darkwing", "pullNumber": 10293, "dateLastUpdated": "2021-03-16T17:00:14Z", "title": "Implement Ledger Live bridge", "url": "https://github.com/MetaMask/metamask-extension/pull/10293", "reviewers": [ "darkwing", "Gudahtt", "brad-decker", "rachelcope" ] }, { "author": "shanejonas", "pullNumber": 10627, "dateLastUpdated": "2021-03-16T13:25:59Z", "title": "fix: replace dnode background with JSON-RPC", "url": "https://github.com/MetaMask/metamask-extension/pull/10627", "reviewers": [ "shanejonas", "kumavis", "Gudahtt", "darkwing", "rekmarks" ] }, { "author": "MonarthS", "pullNumber": 10433, "dateLastUpdated": "2021-03-16T07:51:16Z", "title": "Update `gu` localized messages", "url": "https://github.com/MetaMask/metamask-extension/pull/10433", "reviewers": [ "Gudahtt" ] }, { "author": "brad-decker", "pullNumber": 10639, "dateLastUpdated": "2021-03-15T15:04:43Z", "title": "refactor incoming tx controller", "url": "https://github.com/MetaMask/metamask-extension/pull/10639", "reviewers": [ "brad-decker", "Gudahtt", "danjm", "rekmarks" ] }, { "author": "gitpurva", "pullNumber": 10651, "dateLastUpdated": "2021-03-15T13:14:50Z", "title": "Corrected to send", "url": "https://github.com/MetaMask/metamask-extension/pull/10651", "reviewers": [ "Gudahtt" ] }, { "author": "BboyAkers", "pullNumber": 10646, "dateLastUpdated": "2021-03-14T06:54:20Z", "title": "Removed My Wallet Accounts", "url": "https://github.com/MetaMask/metamask-extension/pull/10646", "reviewers": [ "darkwing" ] }, { "author": "codeoneline", "pullNumber": 9938, "dateLastUpdated": "2021-03-12T11:42:04Z", "title": "When you Switch HW wallet, removeAccount not worked as you think", "url": "https://github.com/MetaMask/metamask-extension/pull/9938", "reviewers": [ "Gudahtt", "codeoneline", "Gudahtt", "NiranjanaBinoy" ] }, { "author": "EtDu", "pullNumber": 10537, "dateLastUpdated": "2021-03-12T09:21:06Z", "title": "Add LavaMoat to UI", "url": "https://github.com/MetaMask/metamask-extension/pull/10537", "reviewers": [ "kumavis", "NiranjanaBinoy" ] }, { "author": "kumavis", "pullNumber": 10636, "dateLastUpdated": "2021-03-12T05:14:11Z", "title": "Delete setupFetchDebugging.js", "url": "https://github.com/MetaMask/metamask-extension/pull/10636", "reviewers": [ "Gudahtt" ] }, { "author": "danjm", "pullNumber": 10583, "dateLastUpdated": "2021-03-10T15:34:39Z", "title": "Whats new popup", "url": "https://github.com/MetaMask/metamask-extension/pull/10583", "reviewers": [ "Gudahtt", "danjm", "brad-decker", "ryanml" ] }, { "author": "rgordon95", "pullNumber": 10365, "dateLastUpdated": "2021-03-09T07:04:16Z", "title": "Remove my wallet account 10342", "url": "https://github.com/MetaMask/metamask-extension/pull/10365", "reviewers": [ "Gudahtt", "darkwing" ] }, { "author": "xlab", "pullNumber": 10426, "dateLastUpdated": "2021-03-04T19:41:43Z", "title": "Porting MetaMask for Safari 14", "url": "https://github.com/MetaMask/metamask-extension/pull/10426", "reviewers": [ "darkwing", "Gudahtt" ] }, { "author": "Gudahtt", "pullNumber": 10267, "dateLastUpdated": "2021-03-04T15:35:37Z", "title": "Update `pt_BR` localized messages", "url": "https://github.com/MetaMask/metamask-extension/pull/10267", "reviewers": [ "lucassaldanha", "Gudahtt", "darkwing" ] }, { "author": "Gudahtt", "pullNumber": 10271, "dateLastUpdated": "2021-03-04T15:07:29Z", "title": "Update `zh_CN` localized messages", "url": "https://github.com/MetaMask/metamask-extension/pull/10271", "reviewers": [ "danjm" ] }, { "author": "Gudahtt", "pullNumber": 10272, "dateLastUpdated": "2021-03-04T14:54:17Z", "title": "Update es-419 localized messages", "url": "https://github.com/MetaMask/metamask-extension/pull/10272", "reviewers": [ "mapachurro", "kumavis", "NiranjanaBinoy" ] }, { "author": "ebaker", "pullNumber": 9311, "dateLastUpdated": "2021-03-01T15:22:54Z", "title": "#9024 Number formatting should be internationalized", "url": "https://github.com/MetaMask/metamask-extension/pull/9311", "reviewers": [ "Gudahtt", "darkwing", "kumavis", "brad-decker" ] }, { "author": "Gudahtt", "pullNumber": 10495, "dateLastUpdated": "2021-02-24T16:09:48Z", "title": "Fix Buffer warnings during build", "url": "https://github.com/MetaMask/metamask-extension/pull/10495", "reviewers": [] }, { "author": "danjm", "pullNumber": 9730, "dateLastUpdated": "2021-02-13T23:24:36Z", "title": "Add documentation and improve validation for swaps quotes and some of its properties", "url": "https://github.com/MetaMask/metamask-extension/pull/9730", "reviewers": [ "darkwing", "NiranjanaBinoy" ] }, { "author": "vasapower", "pullNumber": 7740, "dateLastUpdated": "2021-02-04T19:27:59Z", "title": "ENS Address preservation when calling URLs", "url": "https://github.com/MetaMask/metamask-extension/pull/7740", "reviewers": [ "Gudahtt", "vasapower", "whymarrh", "Gudahtt", "tmashuang" ] }, { "author": "tmashuang", "pullNumber": 9404, "dateLastUpdated": "2021-01-26T18:56:36Z", "title": "Part 1 of migration to react-testing-library", "url": "https://github.com/MetaMask/metamask-extension/pull/9404", "reviewers": [ "tmashuang", "Gudahtt" ] }, { "author": "yellowgh0st", "pullNumber": 9949, "dateLastUpdated": "2021-01-25T18:52:36Z", "title": "Allow user to speed up transaction with any nonce if enabled", "url": "https://github.com/MetaMask/metamask-extension/pull/9949", "reviewers": [ "darkwing", "yellowgh0st", "Grubson33421", "danjm", "rachelcope" ] }, { "author": "kumavis", "pullNumber": 8170, "dateLastUpdated": "2021-01-18T15:55:11Z", "title": "Bundler Refactor", "url": "https://github.com/MetaMask/metamask-extension/pull/8170", "reviewers": [ "whymarrh", "Gudahtt", "danjm" ] }, { "author": "wbt", "pullNumber": 9130, "dateLastUpdated": "2021-01-14T13:44:08Z", "title": "Add gas-only transaction permission", "url": "https://github.com/MetaMask/metamask-extension/pull/9130", "reviewers": [ "danfinlay" ] }, { "author": "fodder1997", "pullNumber": 7712, "dateLastUpdated": "2020-08-23T22:19:05Z", "title": "Connecting trustvault to MetaMask", "url": "https://github.com/MetaMask/metamask-extension/pull/7712", "reviewers": [ "Gudahtt", "necati92", "whymarrh", "tmashuang", "miranda76", "jennypollack", "danjm" ] }, { "author": "antoncoding", "pullNumber": 8196, "dateLastUpdated": "2020-08-23T22:19:02Z", "title": "Support CoolWalletS hardware wallet", "url": "https://github.com/MetaMask/metamask-extension/pull/8196", "reviewers": [ "whymarrh", "Gudahtt", "danjm" ] } ]
+
+  function htmlToElement(html) {
+      var template = document.createElement('template');
+      html = html.trim(); // Never return a text node of whitespace as the result
+      template.innerHTML = html;
+      return template.content.firstChild;
+  }
+
+  </script>
+  <script>
+    function setPRData () {
+      prData.forEach(pr => {
+        const html = '<div style="display:flex; flex-flow: column;padding: 12px;border: 1px solid black;width: 300px;overflow-wrap: break-word;">'+
+          `<div style="font-size: 18px; font-weight: 700;">Title: ${pr.title}</div>` +
+          `<div style="padding-top: 8px;padding-bottom: 8px;">Reviewers: ${pr.reviewers.join(', ')}</div>` +
+          `<a href=${pr.url}>url: ${pr.url}</div>` +
+        '</div>'
+        const prCard = htmlToElement(html)
+        document.getElementById('prView').appendChild(prCard)
+      })
+    }
+
+    function setReviewerData () {
+      let reviewerData = {}
+      prData.forEach(pr => {
+        pr.reviewers.forEach(reviewer => {
+          reviewerData = {
+            ...reviewerData,
+            [reviewer]: {
+              ...reviewerData[reviewer],
+              [pr.pullNumber]: {
+                title: pr.title,
+                url: pr.url,
+              },
+            },
+          }
+        })
+      })
+
+      Object.keys(reviewerData).forEach(reviewer => {
+        const reviewerCardHtml = '<div style="display:flex; flex-flow: column;padding: 12px;border: 1px solid black;width: 300px;overflow-wrap: break-word;">'+
+          `<div style="font-size: 18px; font-weight: 700;">Reviewer: ${reviewer}</div>` +
+        '</div>'
+        const reviewerCard = htmlToElement(reviewerCardHtml)
+
+        Object.keys(reviewerData[reviewer]).forEach(prNumber => {
+          const reviewerPRHtml = `<a href=${reviewerData[reviewer][prNumber].url} style="padding-top: 4px;padding-bottom: 4px;">#${prNumber}: ${reviewerData[reviewer][prNumber].title}</a>`
+          const reviewerPRElement = htmlToElement(reviewerPRHtml)
+          reviewerCard.appendChild(reviewerPRElement)
+
+        })
+        document.getElementById('reviewerView').appendChild(reviewerCard)
+      })
+    }
+    window.onload = () => {
+      document.getElementById('byReviewer').addEventListener('click', () => {
+        document.getElementById('prView').innerHTML = ''
+        document.getElementById('reviewerView').innerHTML = ''
+        document.getElementById('prView').style.display = 'none'
+        document.getElementById('reviewerView').style.display = 'flex'
+        setReviewerData()
+      })
+
+      document.getElementById('byPR').addEventListener('click', () => {
+        document.getElementById('prView').innerHTML = ''
+        document.getElementById('reviewerView').innerHTML = ''
+        document.getElementById('reviewerView').style.display = 'none'
+        document.getElementById('prView').style.display = 'flex'
+        setPRData()
+      })
+    }
+
+  </script>
+</html>
